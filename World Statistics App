@@ -1,0 +1,67 @@
+//For Code.org
+
+var countries = getColumn("Countries and Territories", "Country Name");
+var populationList = getColumn("Countries and Territories", "Population");
+var gdpList = getColumn("Countries and Territories", "GDP Per Capita");
+var internetList = getColumn("Countries and Territories", "Percent Using Internet");
+var flagList = getColumn("Countries and Territories", "Flag");
+
+//Displays the named screens after user clicks a certain button
+onEvent("populationButton", "click", function( ) {
+  setScreen("populationScreen");
+});
+onEvent("internetButton", "click", function( ) {
+  setScreen("internetScreen");
+});
+onEvent("gdpButton", "click", function( ) {
+  setScreen("gdpScreen");
+});
+onEvent("flagButton", "click", function( ) {
+  setScreen("flagScreen");
+});
+onEvent("populationHome", "click", function( ) {
+  setScreen("homeScreen");
+});
+onEvent("gdpHome", "click", function( ) {
+  setScreen("homeScreen");
+});
+onEvent("internetHome", "click", function( ) {
+  setScreen("homeScreen");
+});
+onEvent("flagHome", "click", function( ) {
+  setScreen("homeScreen");
+});
+
+//Traverses through lists to display chosen stat for the corresponding country in the dropdown
+onEvent("populationDropdown", "change", function( ) {
+  var countrySelection = getText("populationDropdown");
+  for (var i = 0; i < countries.length; i++) {
+    if (countrySelection == countries[i]) {
+      setText("populationText", populationList[i] + " people");
+    }
+  }
+});
+onEvent("gdpDropdown", "change", function( ) {
+  var countrySelection = getText("gdpDropdown");
+  for (var i = 0; i < countries.length; i++) {
+    if (countrySelection == countries[i]) {
+      setText("gdpText", "$" + gdpList[i]);
+    }
+  }
+});
+onEvent("internetDropdown", "change", function( ) {
+  var countrySelection = getText("internetDropdown");
+  for (var i = 0; i < countries.length; i++) {
+    if (countrySelection == countries[i]) {
+      setText("internetText", internetList[i] + "% of the population have access to the internet");
+    }
+  }
+});
+onEvent("flagDropdown", "change", function( ) {
+  var countrySelection = getText("flagDropdown");
+  for (var i = 0; i < countries.length; i++) {
+    if (countrySelection == countries[i]) {
+      setImageURL("flagImage", flagList[i]);
+    }
+  }
+});
