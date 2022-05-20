@@ -1,0 +1,39 @@
+//For Code.org
+
+var country;
+var countryNames = getColumn("Countries and Territories", "Country Name");
+var countryFlags = getColumn("Countries and Territories", "Flag");
+newCountry();
+
+//When guess button is clicked, checks if answer in text input is correct and outputs result
+onEvent("guessButton", "click", function( ){
+  var guessed = getProperty("inputText", "text");
+  if(guessed.toLowerCase() == country.toLowerCase()){
+    setProperty("verdictText", "text", "Correct!");
+  } else {
+    setProperty("verdictText", "text", "Incorrect. " + country);
+  }
+});
+
+//When new country button is clicked, displays flag of random country
+onEvent("newcountryButton", "click", function( ) {
+  newCountry();
+  setProperty("verdictText", "text", "");
+  setProperty("inputText", "text", "");
+});
+
+//Selects random country from list and outputs its flag
+function newCountry(){
+  country = countryNames[randomNumber(0, countryNames.length - 1)];
+  var flag = countryFlag(country);
+  setImageURL("flagImage", flag);
+}
+
+//Returns flag URL of random country from another list
+function countryFlag(name){
+  for(var i = 0; i < countryNames.length; i++){
+    if(countryNames[i] == name){
+      return countryFlags[i];
+    }
+  }
+}
